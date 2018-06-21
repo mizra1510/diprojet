@@ -1,0 +1,27 @@
+{% extends "DIForumBundle::base.html.twig" %}
+
+{% block title %}{{ parent() }}Voir sujet {% endblock %}
+
+{% block body_forum %}
+
+   subject : {{  subject.title }}<br>
+       by : {{ subject.author }} <br>
+            {{ subject.content }}<br>
+
+    <hr>
+    {% for answer in answers_list %}
+    <div>
+        {{ answer.author }}<br>
+        {{ answer.date|date('d/m/Y') }}<br>
+        {{ answer.content }}
+       <span style="float: right">
+           <a href="{{ url('di_forum_deleteanswer',{'id':answer.id}) }}">Delete</a>
+       </span>
+    </div>
+    <hr>
+    {% endfor %}
+    <h2>ajouter un commentaire</h2>
+    {{ form(form_answer) }}
+
+
+{% endblock %}

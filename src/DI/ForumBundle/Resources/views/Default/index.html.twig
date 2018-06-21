@@ -1,0 +1,41 @@
+{% extends "DIForumBundle::base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_forum %}
+
+    <div class="row">
+        Appropriez vous cet espace de discussion
+    </div>
+
+    <a class="btn btn-default" href="{{ url('di_forum_addsubject')}}">
+        <i class="glyphicon glyphicon-edit"></i>
+        Nouveau sujet
+    </a>
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sujet</th>
+                    <th>Auteur</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject in listesubjects %}
+                    <tr>
+                        <td><a href="{{ url('di_forum_viewsubject', { 'id': subject.id }) }}">{{ subject.title }}</a></td>
+                        <td>{{ subject.author }}</td>
+                        <td>{{ subject.date|date("d/m/Y") }}</td>
+                        {#<td><a href="" class="btn btn-info glyphicon glyphicon-trash" style=""  role="button"></a></td>#}
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
